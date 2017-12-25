@@ -3,7 +3,7 @@ https://www.sagarandcompany.com/
 
 ![alt text](http://javasampleapproach.com/wp-content/uploads/2016/09/bean-life-cycle.jpg)
 
-How to invoke spring bean init and destroy methods?
+# How to invoke spring bean init and destroy methods?
 
 You can define initialization and destroy methods with in the spring bean.
 You can configure it using init-method, and destroy-method in the xml based configuration file. 
