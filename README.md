@@ -1,6 +1,7 @@
 # BeanLifeCycle
 https://www.sagarandcompany.com/
 
+![alt text](http://javasampleapproach.com/wp-content/uploads/2016/09/bean-life-cycle.jpg)
 
 How to invoke spring bean init and destroy methods?
 
@@ -74,7 +75,6 @@ you must include context:annotation-config tag.
 <context:annotation-config />
 
 
-
 public class UserService {
     private String name;
     private String email;
@@ -92,7 +92,7 @@ public class UserService {
 }
 </code></pre>
 
-#Configure default initialization and destroy methods in all spring beans
+# Configure default initialization and destroy methods in all spring beans
 In case, if you have many spring beans with initialization and destory method, then you need to define init-method and destroy-method on each individual spring bean. Spring provides an alternative and flexible way to configure this. You can define only once with same method signature and you can use across all spring beans. You need to configure default-init-method and default-destroy-method attributes on the <beans> element. This example shows how to configure it.
 <pre><code>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -110,8 +110,6 @@ In case, if you have many spring beans with initialization and destory method, t
     </bean>
 
 </beans>
-
-
 
 
 public class PersonService {
