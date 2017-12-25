@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-init-method="init"
-       default-destroy-method="destroy"
->
-    <bean name="empService"
-          class="com.sagarandcompany.BeanLifeCycle.InitializingBeanAndDisposableBeanInterface.EmpService">
-        <property name="name" value="Sagar"/>
-        <property name="email" value="Sagarmal624@gmail.com"/>
-        <property name="age" value="25"/>
-    </bean>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 
-    <bean name="personService" class="com.sagarandcompany.BeanLifeCycle.initAndDestroyMethodAttribute.PersonService"
-          init-method="init" destroy-method="destroy">
-        <property name="name" value="Sagar"/>
-        <property name="email" value="Sagarmal624@gmail.com"/>
-        <property name="age" value="25"/>
-    </bean>
+>
+    <!--default-init-method="init"-->
+    <!--default-destroy-method="destroy"-->
+
+    <!--<bean name="empService"-->
+    <!--class="com.sagarandcompany.BeanLifeCycle.InitializingBeanAndDisposableBeanInterface.EmpService">-->
+    <!--<property name="name" value="Sagar"/>-->
+    <!--<property name="email" value="Sagarmal624@gmail.com"/>-->
+    <!--<property name="age" value="25"/>-->
+    <!--</bean>-->
+
+    <!--<bean name="personService" class="com.sagarandcompany.BeanLifeCycle.initAndDestroyMethodAttribute.PersonService"-->
+    <!--init-method="init" destroy-method="destroy">-->
+    <!--<property name="name" value="Sagar"/>-->
+    <!--<property name="email" value="Sagarmal624@gmail.com"/>-->
+    <!--<property name="age" value="25"/>-->
+    <!--</bean>-->
 
     <bean name="userService" class="com.sagarandcompany.BeanLifeCycle.PostConstructAndPreDestroyAnnotation.UserService">
         <property name="name" value="Sagar"/>
         <property name="email" value="Sagarmal624@gmail.com"/>
         <property name="age" value="25"/>
     </bean>
-    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <bean class="com.sagarandcompany.BeanLifeCycle.SpringBeanPostProcessors.MyBeanInitProcessor"/>
 
-
-    <!--<context:annotation-config/>-->
+    <context:annotation-config/>
 </beans>

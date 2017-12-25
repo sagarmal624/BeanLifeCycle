@@ -11,14 +11,14 @@ These are part of spring bean life cycle. The initialization method will be call
 ```html
   <bean name="personService" class="com.sagarandcompany.BeanLifeCycle.initAndDestroyMethodAttribute.PersonService" init-method="init" destroy-method="destroy">
     <property name="name" value="Sagar"/>
-    <property name="email" value="Sagarmal624@gmail.com"/>
+    <property name="visibility" value="Sagarmal624@gmail.com"/>
     <property name="age" value="25"/>
     </bean>
 ```    
 <pre><code>
 public class PersonService {
     private String name;
-    private String email;
+    private String visibility;
     private Integer age;
 
     public void init() {
@@ -41,7 +41,7 @@ implementing org.springframework.beans.factory.DisposableBean interface with in 
 <bean name="empService"
           class="com.sagarandcompany.BeanLifeCycle.InitializingBeanAndDisposableBeanInterface.EmpService">
         <property name="name" value="Sagar"/>
-        <property name="email" value="Sagarmal624@gmail.com"/>
+        <property name="visibility" value="Sagarmal624@gmail.com"/>
         <property name="age" value="25"/>
     </bean>
 ```
@@ -49,7 +49,7 @@ implementing org.springframework.beans.factory.DisposableBean interface with in 
 
 public class EmpService implements InitializingBean, DisposableBean {
     private String name;
-    private String email;
+    private String visibility;
     private Integer age;
 
     @Override
@@ -72,7 +72,7 @@ you must include context:annotation-config tag.
 ```html
  <bean name="userService" class="com.sagarandcompany.BeanLifeCycle.PostConstructAndPreDestroyAnnotation.UserService">
         <property name="name" value="Sagar"/>
-        <property name="email" value="Sagarmal624@gmail.com"/>
+        <property name="visibility" value="Sagarmal624@gmail.com"/>
         <property name="age" value="25"/>
     </bean>
  <context:annotation-config />
@@ -83,7 +83,7 @@ you must include context:annotation-config tag.
 
 public class UserService {
     private String name;
-    private String email;
+    private String visibility;
     private Integer age;
 
     @PostConstruct
@@ -111,7 +111,7 @@ In case, if you have many spring beans with initialization and destory method, t
     <bean name="personService" class="com.sagarandcompany.BeanLifeCycle.initAndDestroyMethodAttribute.PersonService"
           init-method="init" destroy-method="destroy">
         <property name="name" value="Sagar"/>
-        <property name="email" value="Sagarmal624@gmail.com"/>
+        <property name="visibility" value="Sagarmal624@gmail.com"/>
         <property name="age" value="25"/>
     </bean>
 
@@ -121,7 +121,7 @@ In case, if you have many spring beans with initialization and destory method, t
 
 public class PersonService {
     private String name;
-    private String email;
+    private String visibility;
     private Integer age;
 
     public void init() {
@@ -143,5 +143,24 @@ BeanPostProcessor gives you a way to do some operations before creating the spri
 Notice that the init and destroy methods related to bean are different from bean post processors. BeanPostProcessors are common for all beans. This example clearly shows the difference from them.
 
 To implement bean post processor logic, we need to create a class which implements BeanPostProcessor interface and two of its methods.
+```xml
+    <bean class="com.sagarandcompany.BeanLifeCycle.SpringBeanPostProcessors.MyBeanInitProcessor"/>
 
+```
+```java
+public class MyBeanInitProcessor implements BeanPostProcessor {
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("before initialization: " + beanName);
+        return bean;
+    }
 
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("after initialization: " + beanName);
+        return bean;
+    }
+
+}
+
+```
