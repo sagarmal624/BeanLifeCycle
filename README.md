@@ -135,6 +135,8 @@ BeanPostProcessor gives you a way to do some operations before creating the spri
 
 Notice that the init and destroy methods related to bean are different from bean post processors. BeanPostProcessors are common for all beans. This example clearly shows the difference from them.
 
+The IoC container calls BeanPostProcessor.postProcessBeforeInitialization() before @PostConstruct and InitializingBean.afterPropertiesSet() method, then calls BeanPostProcessor.postProcessAfterInitialization() (after custom init method).
+
 To implement bean post processor logic, we need to create a class which implements BeanPostProcessor interface and two of its methods.
 ```xml
     <bean class="com.sagarandcompany.BeanLifeCycle.SpringBeanPostProcessors.MyBeanInitProcessor"/>
